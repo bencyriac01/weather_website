@@ -1,0 +1,95 @@
+/* Aurora Weather — styles.css */
+:root{
+  --bg:#0f1724;
+  --card: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.06);
+  --glass-strong: rgba(255,255,255,0.09);
+  --accent1: #7f5af0;
+  --accent2: #34d399;
+  --text:#e6eef8;
+  --muted:#9fb0c8;
+  --radius:18px;
+  --glass-border: rgba(255,255,255,0.08);
+}
+
+*{box-sizing:border-box}
+html,body,#app{height:100%}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071029 0%, #0f1724 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 24px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:20px}
+.title{font-weight:700;font-family:Manrope,Inter;font-size:18px}
+.icon-btn{background:transparent;border:1px solid transparent;padding:8px;border-radius:10px;color:var(--text);cursor:pointer}
+
+.main{padding:16px;max-width:1100px;margin:0 auto}
+.search-area{margin-bottom:18px}
+.search-card{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-radius:14px}
+.search-input{background:transparent;border:none;outline:none;color:var(--text);font-size:16px;width:360px}
+.suggestions{position:absolute;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(8px);border-radius:10px;margin-top:6px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+.recent{min-width:160px;text-align:right}
+.recent h4{margin:0;font-size:13px;color:var(--muted)}
+.recent-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.recent-list button{background:transparent;border:1px solid var(--glass-border);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+.weather-wrap{position:relative}
+.bg-effects{position:absolute;inset:0;z-index:0;border-radius:22px;pointer-events:none}
+
+.main-card{display:flex;gap:18px;padding:22px;border-radius:20px;position:relative;overflow:hidden;z-index:5}
+.card-left{flex:1}
+.card-right{width:320px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.location h2{margin:0;font-size:20px}
+.location p{margin:2px 0 12px;color:var(--muted)}
+.temp-large{font-size:72px;font-weight:700;line-height:0.9}
+.condition{font-size:18px;color:var(--muted)}
+.meta{display:flex;gap:12px;margin-top:12px}
+.meta-item{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:8px 12px;border-radius:12px;border:1px solid var(--glass-border);color:var(--muted);font-size:13px}
+
+.small-info-cards{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
+.info-card{padding:10px 12px;border-radius:12px;text-align:center}
+.loading-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.35),rgba(0,0,0,0.45));display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:all .35s}
+.loading-overlay.active{opacity:1;pointer-events:auto}
+.skeleton{width:60%;height:10px;background:linear-gradient(90deg,#2b394d 0%, #1b2937 50%, #2b394d 100%);border-radius:999px;animation:shimmer 1.4s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+.info-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px}
+.card{padding:16px;border-radius:14px;text-align:center;border:1px solid var(--glass-border)}
+
+.forecast-area{margin-top:20px}
+.hourly-carousel{display:flex;gap:12px;overflow:auto;padding:10px 6px}
+.hourly-item{min-width:90px;padding:12px;border-radius:12px;border:1px solid var(--glass-border);text-align:center}
+.daily-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:8px}
+.daily-item{padding:12px;border-radius:12px;border:1px solid var(--glass-border);display:flex;flex-direction:column;gap:10px}
+
+.floating{box-shadow:0 12px 40px rgba(2,8,23,0.6)}
+.glass{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015));backdrop-filter:blur(8px);border:1px solid var(--glass-border)}
+
+/* Animated icons and micro-interactions */
+.weather-icon svg{width:120px;height:120px}
+.weather-icon .sun{animation:spin 12s linear infinite}
+@keyframes spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+.main-card:hover{transform:translateY(-6px);transition:transform .25s}
+.card-right .info-card:hover{transform:translateY(-6px);transition:transform .18s}
+
+/* particles canvas */
+.particles-canvas{position:fixed;right:0;bottom:0;left:0;top:0;pointer-events:none;z-index:2}
+
+/* Responsive */
+@media (max-width:900px){
+  .card-right{width:180px}
+  .temp-large{font-size:48px}
+  .search-input{width:200px}
+}
+@media (max-width:600px){
+  .main{padding:12px}
+  .main-card{flex-direction:column}
+  .card-right{width:100%}
+  .hourly-item{min-width:80px}
+}
+
+/* Light mode */
+@media (prefers-color-scheme:light){
+  :root{--bg:#f4f8fb;--text:#0b1420;--glass:rgba(255,255,255,0.6);--glass-border:rgba(10,20,30,0.06)}
+  body{background:linear-gradient(180deg,#eaf2ff,#f4f8fb)}
+}

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aurora Weather — Premium UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">☀️</div>
+        <div class="title">Aurora Weather</div>
+      </div>
+      <div class="controls">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌓</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="search-area">
+        <div class="search-card glass">
+          <div class="search-left">
+            <input id="cityInput" class="search-input" placeholder="Search city or airport" aria-label="Search city" autocomplete="off">
+            <div id="suggestions" class="suggestions"></div>
+          </div>
+          <div class="recent">
+            <h4>Recent</h4>
+            <div id="recentList" class="recent-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="weather-wrap">
+        <div class="bg-effects" id="bgEffects"></div>
+
+        <article class="main-card glass floating" id="mainCard">
+          <div class="card-left">
+            <div class="location">
+              <h2 id="cityName">San Francisco, US</h2>
+              <p id="currentDate">Mon, Jun 25 • 09:42</p>
+            </div>
+            <div class="temp-block">
+              <div class="temp-large" id="temp">26°</div>
+              <div class="condition" id="condition">Sunny</div>
+            </div>
+            <div class="meta">
+              <div class="meta-item">Feels like <span id="feelsLike">25°</span></div>
+              <div class="meta-item">Humidity <span id="humidity">48%</span></div>
+              <div class="meta-item">Wind <span id="wind">6 km/h</span></div>
+            </div>
+          </div>
+
+          <div class="card-right">
+            <div class="weather-icon" id="weatherIcon" aria-hidden="true">
+              <!-- animated SVG injected by JS -->
+            </div>
+            <div class="small-info-cards">
+              <div class="info-card glass">Pressure<br><strong id="pressure">1012 hPa</strong></div>
+              <div class="info-card glass">UV Index<br><strong id="uv">5</strong></div>
+              <div class="info-card glass">Visibility<br><strong id="visibility">10 km</strong></div>
+            </div>
+          </div>
+
+          <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+            <div class="skeleton"></div>
+          </div>
+        </article>
+
+        <div class="info-cards">
+          <div class="card glass">Humidity<br><strong id="cardHumidity">48%</strong></div>
+          <div class="card glass">Wind Speed<br><strong id="cardWind">6 km/h</strong></div>
+          <div class="card glass">Pressure<br><strong id="cardPressure">1012 hPa</strong></div>
+          <div class="card glass">Sunrise<br><strong id="sunrise">05:43</strong></div>
+          <div class="card glass">Sunset<br><strong id="sunset">20:21</strong></div>
+          <div class="card glass">UV Index<br><strong id="cardUV">5</strong></div>
+        </div>
+
+        <section class="forecast-area">
+          <h3>24‑Hour Forecast</h3>
+          <div id="hourlyCarousel" class="hourly-carousel"></div>
+
+          <h3>7‑Day Forecast</h3>
+          <div id="dailyList" class="daily-list"></div>
+        </section>
+
+      </section>
+
+    </main>
+
+    <canvas id="particlesCanvas" class="particles-canvas" aria-hidden="true"></canvas>
+
+    <footer class="footer">
+      <small>Demo UI — Mock data. Designed with Glassmorphism & Neumorphism.</small>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
